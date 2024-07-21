@@ -1,6 +1,6 @@
 [package]
 name = "metrics-prometheus-client"
-version = "0.1.0"
+version = "0.0.1"
 edition = "2021"
 description = "Creating compatibility between `metrics` and `prometheus_client`."
 authors = ["Pascal Berrang <rust@paberr.net>"]
