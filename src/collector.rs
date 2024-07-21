@@ -13,6 +13,9 @@ use prometheus_client::{
 
 use crate::{metrics::*, utils::*};
 
+pub type Map<K, V> = Arc<RwLock<HashMap<K, V>>>;
+pub type Label = (String, String);
+
 #[derive(Debug, Default)]
 struct Descriptor {
     help: String,
@@ -33,8 +36,8 @@ impl Descriptor {
 /// and implements the `Recorder` trait of the `metrics` crate.
 #[derive(Debug, Default)]
 pub struct MetricsCollector {
-    metrics: Arc<RwLock<HashMap<KeyName, Vec<(Vec<(String, String)>, Metric)>>>>,
-    descriptors: Arc<RwLock<HashMap<KeyName, Descriptor>>>,
+    metrics: Map<KeyName, Vec<(Vec<Label>, Metric)>>,
+    descriptors: Map<KeyName, Descriptor>,
 }
 
 impl Clone for MetricsCollector {
